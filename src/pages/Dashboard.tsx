@@ -7,7 +7,6 @@ import {
   useUpdateListing,
   useDeleteListing,
 } from '../hooks/useListings'
-import { LAGOS_AREAS } from '../constants/areas'
 import type { Listing } from '../types/listing'
 
 export default function Dashboard() {
