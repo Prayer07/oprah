@@ -37,18 +37,18 @@ export default function Hero({ featured }: HeroProps) {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <a
-                href="#listings"
+                href="/listings"
                 className="bg-gold px-7 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-gold-dark"
               >
                 Explore Listings
               </a>
 
-              <a
+              {/* <a
                 href="#contact"
                 className="border border-gold px-7 py-3.5 text-sm font-medium text-gold transition-all duration-300 hover:bg-gold hover:text-white"
               >
                 Contact Us
-              </a>
+              </a> */}
             </div>
 
             {featured && (

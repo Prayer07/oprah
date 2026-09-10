@@ -23,7 +23,7 @@ export default function Login() {
       return
     }
 
-    navigate('/dashboard')
+    navigate('/opadmin-d')
   }
 
   return (
@@ -39,9 +39,13 @@ export default function Login() {
         <div className="mb-8 text-center">
 
           <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold">
-            <span className="font-display text-lg text-gold">
-              O
-            </span>
+            {/* <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-gold"> */}
+              <img
+                src="/logo.jpeg"
+                alt="Oprah Realty Logo"
+                className="h-full w-full rounded-full object-cover"
+              />
+            {/* </span> */}
           </div>
 
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">

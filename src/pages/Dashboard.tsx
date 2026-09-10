@@ -98,42 +98,10 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-ivory text-charcoal">
 
-      {/* Dashboard header */}
-      <header className="border-b border-gold-soft/60 bg-white">
-        <div className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:px-10">
-
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-gold">
-              <span className="font-display text-sm text-gold">
-                O
-              </span>
-            </span>
-
-            <div>
-              <p className="font-display text-base sm:text-lg">
-                Oprah Realty
-              </p>
-
-              <p className="hidden text-[9px] uppercase tracking-[0.2em] text-grey sm:block">
-                Management Portal
-              </p>
-            </div>
-          </div>
-
-          <button
-            onClick={handleLogout}
-            className="border border-gold px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-gold transition-colors hover:bg-gold hover:text-white"
-          >
-            Log Out
-          </button>
-        </div>
-      </header>
-
       <main className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
 
         {/* Dashboard title */}
         <div className="mb-10">
-
           <div className="mb-4 flex items-center gap-3">
             <span className="h-px w-10 bg-gold" />
 
@@ -142,7 +110,7 @@ export default function Dashboard() {
             </span>
           </div>
 
-          <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <h1 className="font-display text-4xl sm:text-5xl">
                 Manage Listings
@@ -154,14 +122,23 @@ export default function Dashboard() {
               </p>
             </div>
 
-            <div className="border border-gold-soft/60 bg-white px-6 py-4">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-grey">
-                Total Listings
-              </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="border border-gold-soft/60 bg-white px-6 py-4">
+                <p className="text-[9px] uppercase tracking-[0.2em] text-grey">
+                  Total Listings
+                </p>
 
-              <p className="mt-1 font-display text-3xl text-gold">
-                {listings?.length ?? 0}
-              </p>
+                <p className="mt-1 font-display text-3xl text-gold">
+                  {listings?.length ?? 0}
+                </p>
+              </div>
+
+              <button
+                onClick={handleLogout}
+                className="border border-gold bg-white px-5 py-3.5 text-xs font-medium uppercase tracking-[0.12em] text-gold transition-colors hover:bg-gold hover:text-white"
+              >
+                Log Out
+              </button>
             </div>
           </div>
         </div>
@@ -240,22 +217,18 @@ export default function Dashboard() {
                   Location
                 </label>
 
-                <select
+                <input
+                  type="text"
+                  placeholder="e.g. Lekki Phase 1, Lagos"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   required
-                  className="w-full border border-gold-soft/70 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-gold"
-                >
-                  <option value="" disabled>
-                    Select area
-                  </option>
+                  className="w-full border border-gold-soft/70 bg-white px-4 py-3 text-sm outline-none transition-colors placeholder:text-grey/50 focus:border-gold"
+                />
 
-                  {LAGOS_AREAS.map((area) => (
-                    <option key={area} value={area}>
-                      {area}
-                    </option>
-                  ))}
-                </select>
+                <p className="mt-2 text-[10px] leading-5 text-grey">
+                  Enter the property area, neighborhood or address.
+                </p>
               </div>
 
               {/* Brief */}

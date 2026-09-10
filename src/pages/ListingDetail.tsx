@@ -2,7 +2,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../lib/supabaseClient'
-import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import type { Listing } from '../types/listing'
 
@@ -28,28 +27,26 @@ export default function ListingDetail() {
   if (isLoading) {
     return (
       <>
-        <Navbar />
+      <main className="min-h-[70vh] bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
+          <div className="h-4 w-28 animate-pulse bg-ivory" />
 
-        <main className="min-h-[70vh] bg-white">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
-            <div className="h-4 w-28 animate-pulse bg-ivory" />
+          <div className="mt-8 h-12 max-w-xl animate-pulse bg-ivory" />
 
-            <div className="mt-8 h-12 max-w-xl animate-pulse bg-ivory" />
+          <div className="mt-4 h-5 w-48 animate-pulse bg-ivory" />
 
-            <div className="mt-4 h-5 w-48 animate-pulse bg-ivory" />
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="aspect-[4/3] animate-pulse bg-ivory"
-                />
-              ))}
-            </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="aspect-[4/3] animate-pulse bg-ivory"
+              />
+            ))}
           </div>
-        </main>
+        </div>
+      </main>
 
-        <Footer />
+      <Footer />
       </>
     )
   }
@@ -57,7 +54,7 @@ export default function ListingDetail() {
   if (!listing) {
     return (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <main className="flex min-h-[70vh] items-center justify-center bg-white px-5">
           <div className="text-center">
@@ -89,23 +86,29 @@ export default function ListingDetail() {
 
   return (
     <div className="min-h-screen bg-white text-charcoal">
-      <Navbar />
-
       <main>
         {/* Header */}
-        <section className="border-b border-gold-soft/50 bg-ivory">
-          <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+        <section className="relative overflow-hidden border-b border-gold-soft/50">
+          {/* Background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/omo.png')" }}
+          />
 
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
+
+          {/* Content */}
+          <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-28">
             <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:text-charcoal"
+              to="/listings"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/80 transition-colors hover:text-gold"
             >
               ← Back to listings
             </Link>
 
-            <div className="mt-8 max-w-4xl">
-
-              <div className="mb-4 flex items-center gap-3">
+            <div className="mt-10 max-w-4xl">
+              <div className="mb-5 flex items-center gap-3">
                 <span className="h-px w-10 bg-gold" />
 
                 <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold">
@@ -113,18 +116,18 @@ export default function ListingDetail() {
                 </span>
               </div>
 
-              <h1 className="font-display text-4xl leading-tight text-charcoal sm:text-5xl lg:text-7xl">
+              <h1 className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-7xl">
                 {listing.title}
               </h1>
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
                 <p className="text-2xl font-semibold text-gold sm:text-3xl">
                   ₦{listing.price.toLocaleString()}
                 </p>
 
-                <span className="hidden h-5 w-px bg-gold-soft sm:block" />
+                <span className="hidden h-5 w-px bg-white/30 sm:block" />
 
-                <div className="flex items-center gap-2 text-sm text-grey">
+                <div className="flex items-center gap-2 text-sm text-white/80">
                   <svg
                     className="h-4 w-4 text-gold"
                     viewBox="0 0 24 24"
@@ -228,10 +231,20 @@ export default function ListingDetail() {
               </p>
 
               <a
-                href="#contact"
-                className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-charcoal"
-              >
-                Enquire About This Property
+                href={`https://wa.me/2348076543070?text=${encodeURIComponent(
+                  `Hello Oprah Realty, I am interested in this property:
+
+                Property: ${listing.title}
+                Location: ${listing.location}
+                Price: ₦${listing.price.toLocaleString()}
+
+                I would like to get more information about this property.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-charcoal"
+                >
+                  Enquire About This Property
 
                 <span>→</span>
               </a>

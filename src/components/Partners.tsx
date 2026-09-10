@@ -13,15 +13,15 @@ export default function Partners() {
       className="border-y border-gold-soft/50 bg-ivory py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-
         {/* Heading */}
         <div className="mx-auto max-w-2xl text-center">
-
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-gold" />
+
             <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
               Trusted Network
             </span>
+
             <span className="h-px w-8 bg-gold" />
           </div>
 
@@ -35,30 +35,20 @@ export default function Partners() {
           </p>
         </div>
 
-        {/* Partner list */}
-        <div className="mt-12 grid grid-cols-1 border border-gold-soft/60 bg-white sm:grid-cols-2 lg:grid-cols-5">
-
-          {PARTNERS.map((name, index) => (
-            <div
-              key={name}
-              className={`group flex min-h-[110px] items-center justify-center px-6 text-center transition-colors hover:bg-gold ${
-                index !== PARTNERS.length - 1
-                  ? 'border-b border-gold-soft/60 sm:border-r lg:border-b-0'
-                  : ''
-              }`}
-            >
-              <div>
-                <span className="mb-3 block text-[9px] font-semibold tracking-[0.2em] text-gold transition-colors group-hover:text-white">
-                  0{index + 1}
-                </span>
-
-                <span className="text-sm font-medium leading-5 text-charcoal transition-colors group-hover:text-white">
+        {/* Partner marquee */}
+        <div className="mt-12 overflow-hidden border-y border-gold-soft/60 bg-white py-8">
+          <div className="flex w-max animate-marquee">
+            {[...PARTNERS, ...PARTNERS].map((name, index) => (
+              <div
+                key={`${name}-${index}`}
+                className="mx-3 flex min-w-[220px] items-center justify-center border border-gold-soft/60 px-8 py-6 sm:min-w-[260px]"
+              >
+                <span className="text-center text-sm font-medium leading-5 text-charcoal">
                   {name}
                 </span>
               </div>
-            </div>
-          ))}
-
+            ))}
+          </div>
         </div>
       </div>
     </section>
